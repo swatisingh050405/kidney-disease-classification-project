@@ -20,4 +20,4 @@ logging.basicConfig(
     ]
 )
 
-logger = logging.getLogger("kidney disease classification logger")
+logger = logging.getLogger("kidney_disease_classification_logger")
