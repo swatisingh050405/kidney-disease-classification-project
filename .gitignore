@@ -211,3 +211,5 @@ artifacts/
 research/
 *.zip
 kidneyscan_data.zip
+workflow.txt
+research/*
