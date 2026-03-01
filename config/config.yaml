@@ -1,0 +1,9 @@
+artifacts_root: "artifacts"
+
+
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  source_URL: "https://drive.google.com/file/d/1q_Yn9A7uhPRz7ew9d51ucwgBiDIpFgR6/view?usp=drive_link"
+  local_data_file: artifacts/data_ingestion/kidneyscan_data.zip
+  unzip_dir: artifacts/data_ingestion/kidneyscan_unzipdata
