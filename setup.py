@@ -8,7 +8,7 @@ __version__ = '0.0.0'
 
 REPO_NAME = "kidney-disease-classification-project"
 AUTHOR_USER_NAME = "swatisingh0504005"
-SRC_REPO = "kidney_disease_classification"
+SRC_REPO = "kidney_disease_classifier"
 AUTHOR_EMAIL = "swatisingh0504005@gmail.com"
 
 setuptools.setup(
