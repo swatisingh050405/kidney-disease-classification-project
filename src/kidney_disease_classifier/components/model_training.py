@@ -1,6 +1,6 @@
 import torch
 from torch import nn
-from torch.utils.data import DataLoader, random_split
+from torch.utils.data import DataLoader
 from torchvision import datasets, transforms, models
 
 
@@ -48,20 +48,20 @@ class ModelTrainer:
             )
         ])
 
-        # ------------------------------------------------
-        # Load Dataset
-        # ------------------------------------------------
-        full_dataset = datasets.ImageFolder(
-            root=self.config.training_data,
+        # -----------------------------
+# Load Train Dataset
+# -----------------------------
+        train_dataset = datasets.ImageFolder(
+            root=self.config.training_data / "train",
             transform=transform
         )
 
-        train_size = int(0.8 * len(full_dataset))
-        val_size = len(full_dataset) - train_size
-
-        train_dataset, val_dataset = random_split(
-            full_dataset,
-            [train_size, val_size]
+        # -----------------------------
+        # Load Validation Dataset
+        # -----------------------------
+        val_dataset = datasets.ImageFolder(
+            root=self.config.training_data / "val",
+            transform=transform
         )
 
         train_loader = DataLoader(

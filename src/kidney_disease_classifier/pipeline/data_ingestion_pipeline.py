@@ -1,4 +1,4 @@
-from kidney_disease_classifier.config import ConfigurationManager
+from kidney_disease_classifier.config.configuration import ConfigurationManager
 from kidney_disease_classifier.components.data_ingestion import DataIngestion
 from kidney_disease_classifier import logger
 
