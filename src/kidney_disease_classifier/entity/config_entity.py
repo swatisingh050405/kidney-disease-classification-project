@@ -9,6 +9,19 @@ class DataIngestionConfig:
     unzip_dir: Path
 
 
+
+
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+    source_data_path: Path
+    split_data_path: Path
+    train_ratio: float
+    val_ratio: float
+    test_ratio: float
+
+
+
 @dataclass(frozen=True)
 class PrepareBaseModelConfig:
     root_dir: Path

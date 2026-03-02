@@ -5,6 +5,7 @@ from kidney_disease_classifier.utils.common import read_yaml, create_directories
 from kidney_disease_classifier.entity.config_entity import DataIngestionConfig
 from kidney_disease_classifier.entity.config_entity import PrepareBaseModelConfig
 from kidney_disease_classifier.entity.config_entity import TrainingConfig
+from kidney_disease_classifier.entity.config_entity import DataTransformationConfig
 import os
 
 
@@ -34,7 +35,28 @@ class ConfigurationManager:
 
         return data_ingestion_config
     
+    
 
+
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+
+        config = self.config.data_transformation
+        params = self.params
+
+        create_directories([config.root_dir])
+        create_directories([config.split_data_path])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir=Path(config.root_dir),
+            source_data_path=Path(config.source_data_path),
+            split_data_path=Path(config.split_data_path),
+            train_ratio=params.TRAIN_RATIO,
+            val_ratio=params.VAL_RATIO,
+            test_ratio=params.TEST_RATIO
+        )
+
+        return data_transformation_config
+ 
         
     def get_prepare_base_model_config(self) -> PrepareBaseModelConfig:
         config = self.config.prepare_base_model

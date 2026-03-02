@@ -10,6 +10,13 @@ data_ingestion:
 
 
 
+data_transformation:
+  root_dir: artifacts/data_transformation
+  source_data_path: artifacts/data_ingestion/kidneyscan_unzipdata/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone
+  split_data_path: artifacts/data_transformation/split_dataset
+
+
+
 prepare_base_model:
   root_dir: artifacts/prepare_base_model
   base_model_path: artifacts/prepare_base_model/base_model.pth
@@ -19,4 +26,4 @@ prepare_base_model:
 training:
   root_dir: artifacts/training
   trained_model_path: artifacts/training/trained_model.pth
-  training_data: artifacts/split_dataset
+  training_data: artifacts/data_transformation/split_dataset
