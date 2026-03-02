@@ -1,7 +1,7 @@
 from kidney_disease_classifier import logger
 from kidney_disease_classifier.pipeline.data_ingestion_pipeline import DataIngestionPipeline
 from kidney_disease_classifier.pipeline.prepare_base_model_pipeline2 import PrepareBaseModelPipeline
-
+from kidney_disease_classifier.pipeline.model_training_pipeline import ModelTrainingPipeline
 
 stage_name = "Data Ingestion Stage"
 
@@ -24,6 +24,21 @@ try:
     prepare_base_model_pipeline.main()
 
     logger.info(f">>>>>> stage {stage_name} completed <<<<<<\n\n")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
+
+
+stage_name = "Model Training Stage"
+try:
+    logger.info(f">>>>>> stage {stage_name} started <<<<<<")
+
+    model_training_pipeline = ModelTrainingPipeline()
+    model_training_pipeline.main()
+
+    logger.info(f">>>>>> stage {stage_name} completed <<<<<<\n\n")
+
 except Exception as e:
     logger.exception(e)
     raise e
