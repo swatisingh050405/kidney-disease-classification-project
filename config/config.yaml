@@ -27,3 +27,8 @@ training:
   root_dir: artifacts/training
   trained_model_path: artifacts/training/trained_model.pth
   training_data: artifacts/data_transformation/split_dataset
+
+
+model_evaluation:
+  root_dir: artifacts/model_evaluation
+  test_data_path: artifacts/data_transformation/split_dataset

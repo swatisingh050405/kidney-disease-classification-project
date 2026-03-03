@@ -3,9 +3,10 @@ import os
 from kidney_disease_classifier.constants import *
 from kidney_disease_classifier.utils.common import read_yaml, create_directories
 from kidney_disease_classifier.entity.config_entity import DataIngestionConfig
+from kidney_disease_classifier.entity.config_entity import DataTransformationConfig
 from kidney_disease_classifier.entity.config_entity import PrepareBaseModelConfig
 from kidney_disease_classifier.entity.config_entity import TrainingConfig
-from kidney_disease_classifier.entity.config_entity import DataTransformationConfig
+from kidney_disease_classifier.entity.config_entity import ModelEvaluationConfig
 import os
 
 
@@ -90,7 +91,7 @@ class ConfigurationManager:
             root_dir=Path(training.root_dir),
             trained_model_path=Path(training.trained_model_path),
             updated_base_model_path=Path(prepare_base_model_config.updated_base_model_path),
-            training_data=Path(training_data),
+            training_data=Path(training.training_data),
             params_augmentation=params.AUGMENTATION,
             params_batch_size=params.BATCH_SIZE,
             params_epochs=params.EPOCHS,
@@ -100,3 +101,22 @@ class ConfigurationManager:
     )
 
        return training_config
+    
+
+    def get_model_evaluation_config(self) -> ModelEvaluationConfig:
+
+        config = self.config.model_evaluation
+        params = self.params
+        training = self.config.training
+
+        create_directories([config.root_dir])
+
+        model_evaluation_config = ModelEvaluationConfig(
+            root_dir=Path(config.root_dir),
+            test_data_path=Path(config.test_data_path),
+            trained_model_path=Path(training.trained_model_path),
+            params_image_size=params.IMAGE_SIZE,
+            params_classes=params.CLASSES
+        )
+
+        return model_evaluation_config

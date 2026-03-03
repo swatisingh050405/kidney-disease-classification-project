@@ -36,7 +36,7 @@ class PrepareBaseModelConfig:
 
 
 
-@dataclass
+@dataclass(frozen=True)
 class TrainingConfig:
     root_dir: Path
     trained_model_path: Path
@@ -48,3 +48,13 @@ class TrainingConfig:
     params_image_size: list
     params_classes: int
     params_learning_rate: float
+
+
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    root_dir: Path
+    test_data_path: Path
+    trained_model_path: Path
+    params_image_size: list
+    params_classes: int

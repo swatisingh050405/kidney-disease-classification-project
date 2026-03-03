@@ -18,6 +18,7 @@ scikit-learn
 # MLOps
 mlflow==2.2.2
 dvc
+dagshub
 
 # Config & Utilities
 python-box==6.0.2
