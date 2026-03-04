@@ -212,3 +212,7 @@ research/
 *.zip
 kidneyscan_data.zip
 workflow.txt
+
+dvc/
+dvc.lock
+.dvcignore

@@ -1,0 +1,50 @@
+stages:
+
+  data_ingestion:
+    cmd: python src/kidney_disease_classifier/pipeline/data_ingestion_pipeline.py
+    deps:
+      - src/kidney_disease_classifier/pipeline/data_ingestion_pipeline.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion
+
+  data_transformation:
+    cmd: python src/kidney_disease_classifier/pipeline/data_transformation_pipeline.py
+    deps:
+      - src/kidney_disease_classifier/pipeline/data_transformation_pipeline.py
+      - artifacts/data_ingestion
+      - config/config.yaml
+      - params.yaml
+    outs:
+      - artifacts/data_transformation
+
+  prepare_base_model:
+    cmd: python src/kidney_disease_classifier/pipeline/prepare_base_model_pipeline2.py
+    deps:
+      - src/kidney_disease_classifier/pipeline/prepare_base_model_pipeline2.py
+      - config/config.yaml
+      - params.yaml
+    outs:
+      - artifacts/prepare_base_model
+
+  training:
+    cmd: python src/kidney_disease_classifier/pipeline/model_training_pipeline.py
+    deps:
+      - src/kidney_disease_classifier/pipeline/model_training_pipeline.py
+      - artifacts/data_transformation
+      - artifacts/prepare_base_model
+      - config/config.yaml
+      - params.yaml
+    outs:
+      - artifacts/training
+
+  evaluation:
+    cmd: python src/kidney_disease_classifier/pipeline/stage_05_model_evaluation.py
+    deps:
+      - src/kidney_disease_classifier/pipeline/stage_05_model_evaluation.py
+      - artifacts/training
+      - artifacts/data_transformation
+      - config/config.yaml
+      - params.yaml
+    outs:
+      - artifacts/model_evaluation
