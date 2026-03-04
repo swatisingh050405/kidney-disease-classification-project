@@ -27,9 +27,10 @@ types-PyYAML
 ensure==1.0.2
 
 # API Deployment
-flask
-flask-cors
-gunicorn
+fastapi
+uvicorn
+jinja2
+python-multipart
 
 # Testing
 pytest
